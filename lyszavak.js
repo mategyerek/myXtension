@@ -1,5 +1,3 @@
-window.onload = setInterval(purgeLy, 2500);
-
 lypattern = [
   "bazsaly",
   "béklyó",
@@ -103,7 +101,7 @@ lypattern = [
   "üly",
 ];
 
-extended = lypattern; /*.concat(
+extended = lypattern.concat(
   lypattern
     .map((w) => {
       if (!w.includes("lly") && w.slice(-2) == "ly") {
@@ -112,9 +110,9 @@ extended = lypattern; /*.concat(
       return "";
     })
     .filter((el) => el != "")
-);*/
+);
 
-noinclusions = extended; /*.filter((w) => {
+noinclusions = extended.filter((w) => {
   for (i = 0; i < lypattern.length; i++) {
     if (w.includes(lypattern[i]) && w != lypattern[i]) {
       console.log(w);
@@ -123,7 +121,7 @@ noinclusions = extended; /*.filter((w) => {
     }
   }
   return true;
-});*/
+});
 
 function mapJ(text) {
   text = text.replaceAll("lly", "jj");
@@ -132,23 +130,3 @@ function mapJ(text) {
 }
 
 lymap = new Map(noinclusions.map((el) => [el, mapJ(el)]));
-
-function eliminateInstance(element) {
-  text = element.innerText;
-  lymap.forEach((v, k) => {
-    if (text.includes(k)) {
-      element.innerHTML = element.innerHTML.replaceAll(k, v);
-      return;
-    }
-  });
-}
-
-function purgeLy() {
-  try {
-    Array.from(document.getElementsByTagName("span", "div")).forEach((el) => {
-      eliminateInstance(el);
-    });
-  } catch (err) {
-    console.log(err);
-  }
-}
