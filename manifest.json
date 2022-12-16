@@ -5,8 +5,13 @@
     "version": "0.2.0",
     "description": "My extension",
     "content_scripts": [
+        
         {
-          "js": ["messenger.js", "ly_eliminator.js"],
+          "js": ["ly_eliminator.js"],
+          "matches": ["https://www.messenger.com/*", "https://telex.hu/*", "https://index.hu/*", "https://www.origo.hu/*", "https://444.hu/*", "https://888.hu/*", "https://www.facebook.com/*"]
+        },
+        {
+          "js": ["messenger.js"],
           "matches": ["https://www.messenger.com/*"]
         },
         {
